@@ -23,7 +23,7 @@ SUBSCRIBE_ENDINGS = {
 }
 
 class Tag(models.Model):
-    url = models.URLField(blank=True, null=True)
+    url = models.URLField(blank=True, null=True, max_length=500)
     name = models.CharField(max_length=255, primary_key=True)
     level = models.IntegerField(blank=True, null=True)
 
@@ -45,7 +45,7 @@ class Tag(models.Model):
 # class Logotype(models.Model):
 #     pressroom = models.ForeignKey(Pressroom, related_name='logotypes')
 #     size = models.CharField(max_length=50, blank=True, null=True)
-#     image = models.URLField()
+#     image = models.URLField(max_length=500)
 
 class Channel(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -78,7 +78,7 @@ class Material(models.Model):
     pressroom_id = models.IntegerField(blank=True, null=True)
     pressroom = models.CharField(max_length=10, blank=True, null=True)
     organization_number = models.CharField(max_length=50, blank=True, null=True)
-    url = models.URLField(blank=True, null=True)
+    url = models.URLField(blank=True, null=True, max_length=500)
 
     published_at = models.DateTimeField()
     created_at = models.DateTimeField()
@@ -105,7 +105,7 @@ class Material(models.Model):
     start_at = models.DateTimeField(blank=True, null=True)
     end_at = models.DateTimeField(blank=True, null=True)
     location = models.TextField(blank=True, null=True)
-    signup_url = models.URLField(blank=True, null=True)
+    signup_url = models.URLField(blank=True, null=True, max_length=500)
     event_types = models.ManyToManyField(EventType, related_name='materials', blank=True, null=True)
 
     # for image
@@ -113,28 +113,28 @@ class Material(models.Model):
     image_format = models.CharField(max_length=10, blank=True, null=True)
     image_size = models.BigIntegerField(blank=True, null=True)
     image_dimensions = models.CharField(max_length=50, blank=True, null=True)
-    download_url = models.URLField(blank=True, null=True)
+    download_url = models.URLField(blank=True, null=True, max_length=500)
 
     # for video
-    flash_video = models.URLField(blank=True, null=True)
+    flash_video = models.URLField(blank=True, null=True, max_length=500)
     flash_video_width = models.IntegerField(blank=True, null=True)
     flash_video_height = models.IntegerField(blank=True, null=True)
     embed_code = models.TextField(blank=True, null=True)
-    thumbnail = models.URLField(blank=True, null=True)
+    thumbnail = models.URLField(blank=True, null=True, max_length=500)
     duration = models.CharField(max_length=50, blank=True, null=True)
 
     # for document
     document_format = models.CharField(max_length=10, blank=True, null=True)
     document_size = models.BigIntegerField(blank=True, null=True)
-    document = models.URLField(blank=True, null=True)
+    document = models.URLField(blank=True, null=True, max_length=500)
 
-    image = models.URLField(blank=True, null=True)
-    image_thumbnail_large = models.URLField(blank=True, null=True)
-    image_thumbnail_medium = models.URLField(blank=True, null=True)
-    image_thumbnail_small = models.URLField(blank=True, null=True)
+    image = models.URLField(blank=True, null=True, max_length=500)
+    image_thumbnail_large = models.URLField(blank=True, null=True, max_length=500)
+    image_thumbnail_medium = models.URLField(blank=True, null=True, max_length=500)
+    image_thumbnail_small = models.URLField(blank=True, null=True, max_length=500)
 
-    attached_pdf = models.URLField(blank=True, null=True)
-    attached_doc = models.URLField(blank=True, null=True)
+    attached_pdf = models.URLField(blank=True, null=True, max_length=500)
+    attached_doc = models.URLField(blank=True, null=True, max_length=500)
 
     tags = models.ManyToManyField(Tag, related_name='materials', blank=True, null=True)
     # subjects = models.ManyToManyField(Subject, related_name='materials', blank=True, null=True)
@@ -150,11 +150,11 @@ class Material(models.Model):
 #
 # class Comment(models.Model):
 #     material = models.ForeignKey(Material, related_name='comments')
-#     author_url = models.URLField(blank=True, null=True)
+#     author_url = models.URLField(blank=True, null=True, max_length=500)
 #     author = models.CharField(max_length=255, blank=True, null=True)
 #     text = models.TextField(blank=True, null=True)
 
 class Link(models.Model):
     material = models.ForeignKey(Material, related_name='links')
-    url = models.URLField(blank=True, null=True)
+    url = models.URLField(blank=True, null=True, max_length=500)
     text = models.TextField(blank=True, null=True)
