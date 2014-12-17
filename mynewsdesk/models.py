@@ -66,7 +66,9 @@ class EventType(models.Model):
     name = models.TextField()
 
 class Material(models.Model):
-    id = models.IntegerField(primary_key=True)
+    object_id = models.AutoField(primary_key=True)
+
+    id = models.IntegerField()
     type_of_media = models.CharField(max_length=15)
     language = models.CharField(max_length=10)
 
