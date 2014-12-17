@@ -75,10 +75,10 @@ def sync_list(service=models.TYPE_PRESSRELEASE, limit=20):
     for item in item_list:
         try:
             try:
-                db_item = models.Material.objects.get(id=item['id'])
+                db_item = models.Material.objects.get(id=item['id'], type_of_media=item['type_of_media'])
                 report['updated'] += 1
             except models.Material.DoesNotExist:
-                db_item = models.Material(id=item['id'])
+                db_item = models.Material(id=item['id'], type_of_media=item['type_of_media'])
                 report['created'] += 1
 
             for key, val in item.items():

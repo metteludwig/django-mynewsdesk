@@ -145,6 +145,9 @@ class Material(models.Model):
     # contact_people = models.ManyToManyField('self', blank=True, null=True)
     # related_items = models.ManyToManyField('self', blank=True, null=True)
 
+    class Meta:
+        unique_together = (('id', 'type_of_media'),)
+
 # class InstantMessaging(models.Model):
 #     material = models.ForeignKey(Material, related_name='instant_messaging')
 #     type = models.CharField(max_length=255)
